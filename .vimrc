@@ -64,6 +64,7 @@ set timeout                     " Adjust shorter timeout
 set timeoutlen=3000             " to counter delays
 set ttimeoutlen=100
 set cc=80                       " Hightlight coloumn 80
+set background=dark
 
 " Use gruvbox colorscheme
 let g:gruvbox_italics=0             " Disable italics
