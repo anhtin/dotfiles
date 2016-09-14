@@ -75,8 +75,6 @@ zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down 
 
-source ${HOME}/.zgen/zgen.zsh
-
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
 ENABLE_CORRECTION="true"
@@ -89,14 +87,15 @@ BASE16_SHELL="${HOME}/.base16-seti.dark.sh"
 [[ -e "${BASE16_SHELL}" ]] && source ${BASE16_SHELL}
 # }}}
 
-# zgen plugins {{{
+# zgen {{{
+source ${HOME}/.zgen/zgen.zsh
+
 if ! zgen saved; then
   zgen oh-my-zsh
 
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/fasd
   zgen oh-my-zsh plugins/pip
-  zgen oh-my-zsh plugins/z
 
   zgen load zsh-users/zsh-completions src
   zgen load zsh-users/zsh-history-substring-search
@@ -104,7 +103,7 @@ if ! zgen saved; then
   #zgen load command-not-found
   #zgen load autoenv
 
-  zgen load Lokaltog/powerline
+  #zgen load Lokaltog/powerline
   zgen oh-my-zsh plugins/colored-man-pages
   zgen load chrissicool/zsh-256color
   # zgen oh-my-zsh themes/robbyrussell
