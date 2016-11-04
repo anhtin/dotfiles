@@ -1,15 +1,10 @@
 export ARCHFLAGS="-arch x86_64"     # Architecture flags
 export PATH="/usr/local/bin:$PATH"  # User-installed binaries takes precedence
 
-# Variables {{{
-export DEV="${HOME}/Development"
-# }}}
-
 # Aliases {{{
 alias zshreset='. ~/.zshrc'
 alias py='python'
-alias py3='python3'
-alias trans='transmission-remote'
+alias pip='pip3'
 # }}}
 
 # zsh config {{{
@@ -39,12 +34,6 @@ export PIP_REQUIRE_VIRTUALENV=true      # PIP only in python virtual environment
 export WORKON_HOME=${HOME}/.virtualenvs # Virtualenvwrapper
 
 source /usr/local/bin/virtualenvwrapper.sh
-# }}}
-
-# GO {{{
-export GOPATH=${HOME}/Development/Go                # Go workspace path
-export PATH=${PATH}:${GOPATH}/bin                       # Add go binaries to PATH
-#export PATH=$PATH:/usr/local/opt/go/libexec/bin    # Go binary location
 # }}}
 
 # LaTeX {{{
@@ -112,7 +101,6 @@ if ! zgen saved; then
   # Must be after plugins and compinit
   zgen load zsh-users/zsh-syntax-highlighting
 
-
   zgen save
 fi
 # }}}
@@ -132,6 +120,6 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 # Functions {{{
 # Run pip globally
 gpip() {
-    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
 # }}}
