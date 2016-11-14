@@ -38,15 +38,16 @@ Plug 'benmills/vimux'                   " Send commands to tmux pane
 Plug 'christoomey/vim-tmux-navigator'   " Integrate tmux and vim panes
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SYNTAX HIGHLIGHTING
+" LANGUAGE SYNTAX
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug 'cypok/vim-sml'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'moll/vim-node'
 Plug 'tshirtman/vim-cython'
 "Plug 'digitaltoad/vim-pug'
+Plug 'itchyny/vim-haskell-indent'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Settings {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)

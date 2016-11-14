@@ -1,13 +1,17 @@
-export ARCHFLAGS="-arch x86_64"     # Architecture flags
-export PATH="/usr/local/bin:$PATH"  # User-installed binaries takes precedence
+# Custom configurations
+DOTDIR=$HOME/dotfiles
 
-# Aliases {{{
-alias zshreset='. ~/.zshrc'
-alias py='python'
-alias pip='pip3'
-# }}}
+configs=(
+    env.zsh
+    alias.zsh
+    latex.zsh
+    shell.zsh
+    virtualenv.zsh
+)
 
-# zsh config {{{
+for file in ${configs[*]}; do
+    source $DOTDIR/custom/$file
+done
 
 # Lines configured by zsh-newuser-install {{{
 HISTFILE=~/.histfile
@@ -24,29 +28,6 @@ zstyle :compinstall filename ${HOME}'/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall }}}
-
-# }}}
-
-# Applications {{{
-
-# Python virtualenv {{{
-export PIP_REQUIRE_VIRTUALENV=true      # PIP only in python virtual environment
-export WORKON_HOME=${HOME}/.virtualenvs # Virtualenvwrapper
-
-source /usr/local/bin/virtualenvwrapper.sh
-# }}}
-
-# LaTeX {{{
-export PATH="$PATH:/Library/TeX/texbin"
-# }}}
-
-# }}}
-
-# User config {{{
-
-# User-created binaries {{{
-export PATH="${PATH}:${DEV}/bash/bin"
-# }}}
 
 # Type completion {{{
 zmodload zsh/complist
@@ -69,11 +50,6 @@ zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-# }}}
-
-# Base16 Shell {{{
-BASE16_SHELL="${HOME}/.base16-seti.dark.sh"
-[[ -e "${BASE16_SHELL}" ]] && source ${BASE16_SHELL}
 # }}}
 
 # zgen {{{
@@ -101,25 +77,7 @@ if ! zgen saved; then
   # Must be after plugins and compinit
   zgen load zsh-users/zsh-syntax-highlighting
 
+
   zgen save
 fi
-# }}}
-
-# General configurations {{{
-
-# Enable 256-color gruvbox palette
-source "${HOME}/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
-
-# pyenv shims and autocompletion
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-# }}}
-
-# }}}
-
-# Functions {{{
-# Run pip globally
-gpip() {
-    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
-}
 # }}}
