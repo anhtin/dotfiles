@@ -43,10 +43,11 @@ Plug 'christoomey/vim-tmux-navigator'   " Integrate tmux and vim panes
 " Plug 'cypok/vim-sml'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'moll/vim-node'
-Plug 'tshirtman/vim-cython'
-"Plug 'digitaltoad/vim-pug'
-Plug 'itchyny/vim-haskell-indent'
+" Plug 'moll/vim-node'
+" Plug 'tshirtman/vim-cython'
+" Plug 'digitaltoad/vim-pug'
+" Plug 'itchyny/vim-haskell-indent'
+Plug 'hynek/vim-python-pep8-indent'
 
 
 " Settings {{{

@@ -1,18 +1,3 @@
-# Custom configurations
-DOTDIR=$HOME/dotfiles
-
-configs=(
-    env.zsh
-    alias.zsh
-    latex.zsh
-    shell.zsh
-    virtualenv.zsh
-)
-
-for file in ${configs[*]}; do
-    source $DOTDIR/custom/$file
-done
-
 # Lines configured by zsh-newuser-install {{{
 HISTFILE=~/.histfile
 HISTSIZE=100000
@@ -60,7 +45,7 @@ if ! zgen saved; then
 
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/fasd
-  zgen oh-my-zsh plugins/pip
+  # zgen oh-my-zsh plugins/pip
 
   zgen load zsh-users/zsh-completions src
   zgen load zsh-users/zsh-history-substring-search
@@ -81,3 +66,18 @@ if ! zgen saved; then
   zgen save
 fi
 # }}}
+
+# Custom configurations
+DOTDIR="$HOME/dotfiles"
+
+configs=(
+    env.zsh
+    alias.zsh
+    latex.zsh
+    shell.zsh
+    virtualenv.zsh
+)
+
+for file in ${configs[*]}; do
+    source $DOTDIR/custom/$file
+done
