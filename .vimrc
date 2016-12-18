@@ -112,6 +112,22 @@ set hidden                      " Hide buffers (keep history)
 set mouse=a                     " Enable mouse mode for all
 set incsearch                   " Enable incremental highlighting on search
 set splitbelow splitright       " Open new splits below and to the right
+set wildmenu
+set wildmode=full,full
+
+" Filepaths {{{
+set path+=**                        " Enable recursive file search
+set wildignore+=*/node_modules/*    " Exclude node modules
+
+" Store all swapfiles in one place {{{
+let s:swapdir = expand('~/.vim/swaps')
+if !isdirectory(s:swapdir)
+    call mkdir(s:swapdir, 'p')
+endif
+execute 'set directory=' . s:swapdir . '//'
+" }}}
+
+" }}}
 
 " Colorscheme
 set background=dark
