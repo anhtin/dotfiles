@@ -25,7 +25,8 @@ let g:gruvbox_italics=1             " Enable italics
 " }}}
 
 " tpope {{{
-Plug 'tpope/vim-commentary'         " Commenting
+Plug 'tpope/vim-commentary'         " Toggle comments
+Plug 'tpope/vim-surround'           " Easy quoting, paranthesizing and tagging
 " }}}
 
 " vim + tmux integration {{{
@@ -56,8 +57,43 @@ let g:airline#themes#base16#constant = 1
 
 " Language specifics {{{
 
+" CSS {{{
+Plug 'ap/vim-css-color'
+" }}}
+
 " Haskell {{{
-Plug 'itchyny/vim-haskell-indent'
+Plug 'dag/vim2hs'
+Plug 'alx741/vim-hindent'
+
+" Settings {{{
+let g:haskell_conceal = 0
+let g:haskell_quasi = 0
+let g:haskell_interpolation = 0
+let g:haskell_regex = 0
+let g:haskell_jmacro = 0
+let g:haskell_shqq = 0
+let g:haskell_sql = 0
+let g:haskell_json = 0
+let g:haskell_xml = 0
+let g:haskell_hsp = 0
+let g:haskell_tabular = 0
+
+let g:hindent_line_length = 80
+" }}}
+
+" }}}
+
+" HTML {{{
+Plug 'mattn/emmet-vim'                  " Tag abbreviation expansion
+
+" Settings {{{
+let g:user_emmet_install_global = 0     " Don't enable for all files
+autocmd FileType html,css,js,javascript.jsx EmmetInstall
+
+" let g:user_emmet_mode='n'               " only enable normal mode functions.
+let g:user_emmet_mode='a'               " enable all function in all mode.
+" }}}
+
 " }}}
 
 " Javascript {{{
@@ -71,10 +107,19 @@ let g:javascript_plugin_jsdoc = 1
 let g:jsx_ext_required = 0
 " }}}
 
+" Vue {{{
+Plug 'posva/vim-vue'
+" }}}
+
 " }}}
 
 " Python {{{
 Plug 'hynek/vim-python-pep8-indent'
+
+" Jinja2 {{{
+Plug 'Glench/Vim-Jinja2-Syntax'
+" }}}
+
 " }}}
 
 " }}}
@@ -109,9 +154,10 @@ set ttimeoutlen=100
 
 " Interactivity
 set hidden                      " Hide buffers (keep history)
-set mouse=a                     " Enable mouse mode for all
-set incsearch                   " Enable incremental highlighting on search
+set mouse=a                     " Mouse mode for all
+set incsearch                   " Incremental highlighting on search
 set splitbelow splitright       " Open new splits below and to the right
+set clipboard=unnamed           " System-wide clipboard
 set wildmenu
 set wildmode=full,full
 
@@ -134,6 +180,16 @@ set background=dark
 colorscheme gruvbox
 " }}}
 
+" Auto commands {{{
+au FileType * setlocal formatoptions-=o     " Disable auto-comment on o/O
+augroup Web
+    au FileType html,json,javascript,vue setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+                \ softtabstop=2
+augroup END
+" }}}
+
 " Key bindings {{{
 " Set leader key
 nnoremap <space> <Nop>
@@ -154,4 +210,8 @@ nnoremap k gk
 " nnoremap <C-j> <C-w>j
 " nnoremap <C-k> <C-w>k
 " nnoremap <C-l> <C-w>l
+
+" Hotkeys for moving between buffers
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
 " }}}

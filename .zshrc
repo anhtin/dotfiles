@@ -13,57 +13,37 @@ zstyle :compinstall filename ${HOME}'/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall }}}
-
-# Type completion {{{
-zmodload zsh/complist
-autoload -U compinit
-compinit -u
-autoload bashcompinit
-bashcompinit
-zstyle ':completion:*' show-ambiguity true
-
-autoload -U colors
-colors
-zstyle ':completion:*' show-ambiguity "1;2;$color[fg-red]"
-
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down 
-
-zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-# }}}
-
+    
 # zgen {{{
-source ${HOME}/.zgen/zgen.zsh
+source "${HOME}/.zgen/zgen.zsh"
 
+# load zgen
 if ! zgen saved; then
-  zgen oh-my-zsh
+    # prezto options
+    zgen prezto editor key-bindings 'vi'
+    zgen prezto utility:ls color 'yes'
+    zgen prezto prompt theme 'sorin'
+    zgen prezto syntax-highlighting color 'yes'
 
-  zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh plugins/fasd
-  # zgen oh-my-zsh plugins/pip
+    # prezto and modules
+    zgen prezto
+    zgen prezto editor
+    zgen prezto utility
+    [[ "$ZGEN_SYNTAX_HIGHLIGHTING" == "yes" ]] \
+        && zgen prezto syntax-highlighting
+    zgen prezto history-substring-search
+    zgen prezto fasd
+    zgen prezto git
+    zgen prezto syntax-highlighting
+    zgen prezto prompt
 
-  zgen load zsh-users/zsh-completions src
-  zgen load zsh-users/zsh-history-substring-search
-  zgen oh-my-zsh plugins/vi-mode
-  #zgen load command-not-found
-  #zgen load autoenv
+    # other plugins
+    zgen load chrissicool/zsh-256color
+    zgen load zlsun/solarized-man
+    zgen load rupa/z
 
-  #zgen load Lokaltog/powerline
-  zgen oh-my-zsh plugins/colored-man-pages
-  zgen load chrissicool/zsh-256color
-  # zgen oh-my-zsh themes/robbyrussell
-  zgen load anhtin/prompt prompt
-
-  # Must be after plugins and compinit
-  zgen load zsh-users/zsh-syntax-highlighting
-
-
-  zgen save
+    # generate the init script from plugins above
+    zgen save
 fi
 # }}}
 
