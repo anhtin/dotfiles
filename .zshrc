@@ -13,51 +13,103 @@ zstyle :compinstall filename ${HOME}'/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall }}}
-    
+
+# Environment variables {{{
+# Architecture flags
+export ARCHFLAGS="-arch x86_64"
+export EDITOR="/usr/local/bin/vim"
+
+# Custom {{{
+export DEV="$HOME/Development"
+export ASSETS="$DOTDIR/assets"
+# }}}
+
+# Binary precedence {{{
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+# }}}
+
+# Emacs {{{
+# pdf-tools
+export PKG_CONFIG_PATH=/usr/local/Cellar/zlib/1.2.8/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
+# }}}
+
+# Java {{{
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+# }}}
+
+# LaTeX {{{
+export PATH="$PATH:/Library/TeX/texbin"
+# }}}
+
+# Golang {{{
+export GOPATH="$DEV/Go"
+export PATH=$PATH:$GOPATH/bin
+# export PATH="$PATH:/usr/local/opt/go/libexec/bin"   # Optional GOROOT
+# }}}
+
+# SQLite {{{
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+# }}}
+
+# Yarn {{{
+export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+# }}}
+
+# }}}
+
+# Aliases {{{
+alias zshreset='. ~/.zshrc'
+
+# Haskell {{{
+alias ghc='stack ghc'
+alias ghci='stack ghci'
+alias runghc='stack runghc'
+# }}}
+
+# Python {{{
+alias py='python3'
+alias pip='pip3'
+# }}}
+
+# Neovim {{{
+alias vim='nvim'
+alias vi='command vim'
+# }}}
+
+# }}}
+
+# Shell configuration {{{
+
+# Enable 256-color gruvbox palette (for vim) {{{
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
+# }}}
+
+# }}}
+
 # zgen {{{
 source "${HOME}/.zgen/zgen.zsh"
-
-# load zgen
 if ! zgen saved; then
-    # prezto options
-    zgen prezto editor key-bindings 'vi'
     zgen prezto utility:ls color 'yes'
-    zgen prezto prompt theme 'sorin'
     zgen prezto syntax-highlighting color 'yes'
+    zgen prezto prompt theme 'pure'
 
-    # prezto and modules
     zgen prezto
-    zgen prezto editor
-    zgen prezto utility
-    [[ "$ZGEN_SYNTAX_HIGHLIGHTING" == "yes" ]] \
-        && zgen prezto syntax-highlighting
-    zgen prezto history-substring-search
     zgen prezto fasd
-    zgen prezto git
+    zgen prezto utility
+    zgen prezto history-substring-search
     zgen prezto syntax-highlighting
     zgen prezto prompt
 
-    # other plugins
+    zgen load rupa/z
     zgen load chrissicool/zsh-256color
     zgen load zlsun/solarized-man
-    zgen load rupa/z
 
-    # generate the init script from plugins above
     zgen save
 fi
 # }}}
 
-# Custom configurations
-DOTDIR="$HOME/dotfiles"
-
-configs=(
-    env.zsh
-    alias.zsh
-    latex.zsh
-    shell.zsh
-    virtualenv.zsh
-)
-
-for file in ${configs[*]}; do
-    source $DOTDIR/custom/$file
-done
+# Zsh options {{{
+unsetopt CORRECT        # Disable autocorrect (Did you mean?)
+set -o ignoreeof        # Don't let CTRL+D exit shell
+# }}}
