@@ -47,14 +47,47 @@ let g:airline#themes#base16#constant = 1
 "
 " }}}
 
-" deocomplete {{{
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Auto completion {{{
+if has('nvim')
+    " deoplete {{{
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" Confirgurations {{{
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-" }}}
+    " Confirgurations {{{
+    " Use deoplete.
+    let g:deoplete#enable_at_startup = 1
+    " }}}
 
+    " }}}
+else
+    " neocomplete" {{{
+    Plug 'Shougo/neocomplete.vim'
+
+    " Configuration {{{
+    " Disable AutoComplPop.
+    let g:acp_enableAtStartup = 0
+    " Use neocomplete.
+    let g:neocomplete#enable_at_startup = 1
+    " Use smartcase.
+    let g:neocomplete#enable_smart_case = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+    " Define dictionary.
+    let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : '',
+        \ 'vimshell' : $HOME.'/.vimshell_hist',
+        \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
+
+    " Define keyword.
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+    " }}}
+
+    " }}}
+endif
 " }}}
 
 " NERDTree {{{
@@ -107,69 +140,6 @@ let g:elm_format_autosave = 1
 " }
 
 " }}}
-
-" " F# {{{
-" Plug 'jpalardy/vim-slime'
-" Plug 'fsharp/vim-fsharp', {
-"       \ 'for': 'fsharp',
-"       \ 'do':  'make fsautocomplete',
-"       \}
-
-" let g:slime_target="tmux"
-" " }}}
-
-" " Haskell {{{
-" Plug 'dag/vim2hs'
-" Plug 'alx741/vim-hindent'
-
-" " Settings {{{
-" let g:haskell_conceal = 0
-" let g:haskell_quasi = 0
-" let g:haskell_interpolation = 0
-" let g:haskell_regex = 0
-" let g:haskell_jmacro = 0
-" let g:haskell_shqq = 0
-" let g:haskell_sql = 0
-" let g:haskell_json = 0
-" let g:haskell_xml = 0
-" let g:haskell_hsp = 0
-" let g:haskell_tabular = 0
-
-" let g:hindent_line_length = 80
-" " }}}
-
-" " }}}
-
-" " HTML {{{
-" Plug 'othree/html5.vim'     " HTML5 omnicomplete, indent and syntax
-" Plug 'mattn/emmet-vim'      " Tag abbreviation expansion
-
-" " Settings {{{
-" let g:user_emmet_install_global = 0     " Don't enable for all files
-" autocmd FileType html,css,js,javascript.jsx EmmetInstall
-
-" " let g:user_emmet_mode='n'               " only enable normal mode functions.
-" let g:user_emmet_mode='a'               " enable all function in all mode.
-" " }}}
-
-" " }}}
-
-" " Javascript {{{
-" Plug 'pangloss/vim-javascript'
-
-" " React {{{
-" Plug 'mxw/vim-jsx'
-
-" " Syntax highlighting
-" let g:javascript_plugin_jsdoc = 1
-" let g:jsx_ext_required = 0
-" " }}}
-
-" " Vue {{{
-" Plug 'posva/vim-vue'
-" " }}}
-
-" " }}}
 
 " Python {{{
 Plug 'hynek/vim-python-pep8-indent'

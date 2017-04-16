@@ -87,10 +87,10 @@ alias py='python3'
 alias pip='pip3'
 # }}}
 
-# Neovim {{{
-alias vim='nvim'
-alias vi='command vim'
-# }}}
+# # Neovim {{{
+# alias vim='nvim'
+# alias vi='command vim'
+# # }}}
 
 # }}}
 
