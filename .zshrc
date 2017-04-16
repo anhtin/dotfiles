@@ -17,7 +17,7 @@ compinit
 # Environment variables {{{
 # Architecture flags
 export ARCHFLAGS="-arch x86_64"
-export EDITOR="/usr/local/bin/vim"
+export EDITOR="/usr/local/bin/nvim"
 
 # Custom {{{
 export DEV="$HOME/Development"
@@ -46,6 +46,21 @@ export PATH="$PATH:/Library/TeX/texbin"
 export GOPATH="$DEV/Go"
 export PATH=$PATH:$GOPATH/bin
 # export PATH="$PATH:/usr/local/opt/go/libexec/bin"   # Optional GOROOT
+# }}}
+
+# Python {{{
+# export PIP_REQUIRE_VIRTUALENV=true        # PIP only in python virtual environment
+export WORKON_HOME=${HOME}/.virtualenvs     # Virtualenvwrapper
+
+source /usr/local/bin/virtualenvwrapper.sh
+
+# pyenv shims and autocompletion
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+# }}}
+
+# Rust {{{
+export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
 # SQLite {{{

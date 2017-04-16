@@ -90,7 +90,7 @@ Plug 'christoomey/vim-tmux-navigator'   " Integrate tmux and vim panes
 Plug 'sheerun/vim-polyglot'     " Syntax and indentation bundle
 
 " Configurations {{{
-let g:polyglot_disabled = ['markdown', 'python']
+let g:polyglot_disabled = ['elm', 'markdown', 'python']
 " }}}
 
 " }}}
@@ -98,6 +98,25 @@ let g:polyglot_disabled = ['markdown', 'python']
 " CSS {{{
 Plug 'ap/vim-css-color'
 " }}}
+
+" Elm {{{
+Plug 'elmcast/elm-vim'
+
+" Configurations {
+let g:elm_format_autosave = 1
+" }
+
+" }}}
+
+" " F# {{{
+" Plug 'jpalardy/vim-slime'
+" Plug 'fsharp/vim-fsharp', {
+"       \ 'for': 'fsharp',
+"       \ 'do':  'make fsautocomplete',
+"       \}
+
+" let g:slime_target="tmux"
+" " }}}
 
 " " Haskell {{{
 " Plug 'dag/vim2hs'
@@ -246,16 +265,18 @@ let mapleader = "\<space>"
 " Quick reload configuration file
 nnoremap <leader>r :source ~/.vimrc<CR>
 
-" Exit insert mode from homerow
-inoremap jj <ESC>
+" " Exit insert mode from homerow
+" inoremap jj <ESC>
 
 " Enable movement to visual lines (line wraps)
 nnoremap j gj
 nnoremap k gk
 
 " Hotkeys for moving between buffers
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>p :bp<CR>
+nnoremap <leader>n :next<CR>
+nnoremap <leader>p :prev<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
 
 " Hotkey for compiling with make in tmux pane
 nnoremap <leader>c :VimuxRunCommand("make")<CR>
