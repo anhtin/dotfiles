@@ -17,7 +17,7 @@ compinit
 # Environment variables {{{
 # Architecture flags
 export ARCHFLAGS="-arch x86_64"
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/usr/local/bin/vim"
 
 # Custom {{{
 export DEV="$HOME/Development"
@@ -51,6 +51,7 @@ export PATH=$PATH:$GOPATH/bin
 # Python {{{
 # export PIP_REQUIRE_VIRTUALENV=true        # PIP only in python virtual environment
 export WORKON_HOME=${HOME}/.virtualenvs     # Virtualenvwrapper
+export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
 
 source /usr/local/bin/virtualenvwrapper.sh
 
