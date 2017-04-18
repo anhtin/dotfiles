@@ -33,9 +33,11 @@ Plug 'vim-airline/vim-airline'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_powerline_fonts=1
-let g:airline_detect_paste=1
-" let g:airline#extensions#whitespace#enabled=0
+let g:airline_powerline_fonts = 1
+let g:airline_detect_paste = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
+
 " Themes {{{
 Plug 'vim-airline/vim-airline-themes'
 
@@ -44,7 +46,15 @@ let g:airline_theme='base16_default'
 let g:airline_base16_improved_contrast = 1
 let g:airline#themes#base16#constant = 1
 " }}}
-"
+
+" Configurations {{{
+function! AirlineInit()
+    let g:airline_section_z = airline#section#create_right(['%P'])
+    AirlineRefresh
+endfunction
+autocmd VimEnter * call AirlineInit()
+" }}}
+
 " }}}
 
 " Auto completion {{{
