@@ -140,6 +140,15 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " vim + tmux integration {{{
 Plug 'benmills/vimux'                   " Send commands to tmux pane
 Plug 'christoomey/vim-tmux-navigator'   " Integrate tmux and vim panes
+
+" Configurations {{{
+nnoremap <silent> <c-f> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-g> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-space> :TmuxNavigatePrevious<cr>
+" }}}
+
 " }}}
 
 " }}}
