@@ -49,7 +49,7 @@ let g:airline#themes#base16#constant = 1
 
 " Configurations {{{
 function! AirlineInit()
-    let g:airline_section_z = airline#section#create_right(['%P'])
+    let g:airline_section_z = airline#section#create_right(['%c', '%P'])
     AirlineRefresh
 endfunction
 autocmd VimEnter * call AirlineInit()
@@ -104,6 +104,22 @@ endif
 Plug 'scrooloose/nerdtree'
 " }}}
 
+" Syntastic {{{
+Plug 'vim-syntastic/syntastic'
+
+" Configurations {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" }}}
+"
+" }}}
+
 " tpope {{{
 Plug 'tpope/vim-commentary'         " Toggle comments
 Plug 'tpope/vim-surround'           " Easy quoting, paranthesizing and tagging
@@ -113,7 +129,7 @@ Plug 'tpope/vim-surround'           " Easy quoting, paranthesizing and tagging
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" Configuration {{{
+" Configurations {{{
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -259,7 +275,8 @@ nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
 
 " Hotkey for compiling with make in tmux pane
-nnoremap <leader>c :VimuxRunCommand("make")<CR>
+nnoremap <leader>cc :call CmdExecCall()<CR>
+nnoremap <leader>cr :call CmdExecReplace()<CR>
 
 " Hotkey for NERDTree
 nnoremap <leader><space> :NERDTreeToggle<CR>
@@ -271,4 +288,17 @@ cnoremap <C-n> <Down>
 if has('nvim')
     nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 endif
+" }}}
+
+" Custom functions {{{
+function! CmdExecCall()
+    if !exists('b:cmdexec')
+        call CmdExecReplace()
+    endif
+    execute "!" . b:cmdexec
+endfunction
+
+function! CmdExecReplace()
+    let b:cmdexec = input('Enter new command: ')
+endfunction
 " }}}
