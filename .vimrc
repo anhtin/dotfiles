@@ -57,47 +57,33 @@ autocmd VimEnter * call AirlineInit()
 
 " }}}
 
-" Auto completion {{{
-if has('nvim')
-    " deoplete {{{
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" neocomplete" {{{
+Plug 'Shougo/neocomplete.vim'
 
-    " Confirgurations {{{
-    " Use deoplete.
-    let g:deoplete#enable_at_startup = 1
-    " }}}
+" Configuration {{{
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-    " }}}
-else
-    " neocomplete" {{{
-    Plug 'Shougo/neocomplete.vim'
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
 
-    " Configuration {{{
-    " Disable AutoComplPop.
-    let g:acp_enableAtStartup = 0
-    " Use neocomplete.
-    let g:neocomplete#enable_at_startup = 1
-    " Use smartcase.
-    let g:neocomplete#enable_smart_case = 1
-    " Set minimum syntax keyword length.
-    let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-    " Define dictionary.
-    let g:neocomplete#sources#dictionary#dictionaries = {
-        \ 'default' : '',
-        \ 'vimshell' : $HOME.'/.vimshell_hist',
-        \ 'scheme' : $HOME.'/.gosh_completions'
-            \ }
-
-    " Define keyword.
-    if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-    " }}}
-
-    " }}}
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
 endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" }}}
+
 " }}}
 
 " NERDTree {{{
@@ -140,15 +126,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " vim + tmux integration {{{
 Plug 'benmills/vimux'                   " Send commands to tmux pane
 Plug 'christoomey/vim-tmux-navigator'   " Integrate tmux and vim panes
-
-" Configurations {{{
-nnoremap <silent> <c-f> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-g> :TmuxNavigateRight<cr>
-nnoremap <silent> <c-space> :TmuxNavigatePrevious<cr>
-" }}}
-
 " }}}
 
 " }}}
@@ -270,12 +247,13 @@ let mapleader = "\<space>"
 " Quick reload configuration file
 nnoremap <leader>r :source ~/.vimrc<CR>
 
-" " Exit insert mode from homerow
-" inoremap jj <ESC>
-
 " Enable movement to visual lines (line wraps)
 nnoremap j gj
 nnoremap k gk
+
+" Make <C-p> and <C-n> behave like <Up> and <Down> in command line mode
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 " Hotkeys for moving between buffers
 nnoremap <leader>n :next<CR>
@@ -287,16 +265,11 @@ nnoremap <leader>bp :bp<CR>
 nnoremap <leader>cc :call CmdExecCall()<CR>
 nnoremap <leader>cr :call CmdExecReplace()<CR>
 
-" Hotkey for NERDTree
+" Plugin specific {{{
+" NERDTree
 nnoremap <leader><space> :NERDTreeToggle<CR>
+" }}}
 
-" Make <C-p> and <C-n> behave like <Up> and <Down> in command line mode
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-
-if has('nvim')
-    nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
-endif
 " }}}
 
 " Custom functions {{{
