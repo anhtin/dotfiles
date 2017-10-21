@@ -21,7 +21,7 @@ export EDITOR="/usr/local/bin/vim"
 
 # Custom {{{
 export DEV="$HOME/Development"
-export ASSETS="$DOTDIR/assets"
+export DOTDIR="$HOME/dotfiles"
 # }}}
 
 # Binary precedence {{{
