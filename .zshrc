@@ -45,14 +45,13 @@ export PATH=$PATH:$GOPATH/bin
 
 # Python {{{
 # export PIP_REQUIRE_VIRTUALENV=true        # PIP only in python virtual environment
-export WORKON_HOME=${HOME}/.virtualenvs     # Virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
-
-source /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 # pyenv shims and autocompletion
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
 # }}}
 
 # Rust {{{
