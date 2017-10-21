@@ -57,6 +57,10 @@ autocmd VimEnter * call AirlineInit()
 
 " }}}
 
+" fzf {{{
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" }}}
+
 " neocomplete" {{{
 Plug 'Shougo/neocomplete.vim'
 
@@ -90,20 +94,16 @@ let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 Plug 'scrooloose/nerdtree'
 " }}}
 
-" Syntastic {{{
-Plug 'vim-syntastic/syntastic'
+" ALE {{{
+Plug 'w0rp/ale'
 
 " Configurations {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:ale_fixers = {
+    \   'javascript': ['eslint'],
+    \   'python': ['flake8'],
+    \}
 " }}}
-"
+
 " }}}
 
 " tpope {{{
@@ -202,6 +202,8 @@ set splitbelow splitright       " Open new splits below and to the right
 set clipboard=unnamed           " System-wide clipboard
 set wildmenu
 set wildmode=full,full
+set ignorecase
+set smartcase
 
 " Colorscheme
 set background=dark
@@ -256,10 +258,8 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " Hotkeys for moving between buffers
-nnoremap <leader>n :next<CR>
-nnoremap <leader>p :prev<CR>
-nnoremap <leader>bn :bn<CR>
-nnoremap <leader>bp :bp<CR>
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
 
 " Hotkey for compiling with make in tmux pane
 nnoremap <leader>cc :call CmdExecCall()<CR>
