@@ -29,11 +29,6 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 # }}}
 
-# Emacs {{{
-# pdf-tools
-export PKG_CONFIG_PATH=/usr/local/Cellar/zlib/1.2.8/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
-# }}}
-
 # Java {{{
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 # }}}
@@ -95,37 +90,31 @@ alias pip='pip3'
 
 # }}}
 
-# Shell configuration {{{
-
-# Enable 256-color gruvbox palette (for vim) {{{
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
-# }}}
-
-# }}}
-
-# zgen {{{
-source "${HOME}/.zgen/zgen.zsh"
-if ! zgen saved; then
-    zgen prezto utility:ls color 'yes'
-    zgen prezto syntax-highlighting color 'yes'
-    zgen prezto prompt theme 'pure'
-
-    zgen prezto
-    zgen prezto fasd
-    zgen prezto utility
-    zgen prezto history-substring-search
-    zgen prezto syntax-highlighting
-    zgen prezto prompt
-
-    zgen load rupa/z
-    zgen load chrissicool/zsh-256color
-    zgen load zlsun/solarized-man
-
-    zgen save
-fi
-# }}}
-
 # Zsh options {{{
 unsetopt CORRECT        # Disable autocorrect (Did you mean?)
 set -o ignoreeof        # Don't let CTRL+D exit shell
+# }}}
+
+# Key bindings {{{
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+# }}}
+
+# zim {{{
+# User configuration sourced by interactive shells
+#
+
+# Change default zim location 
+export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+
+# Source zim
+if [[ -s ${ZIM_HOME}/init.zsh ]]; then
+  source ${ZIM_HOME}/init.zsh
+fi
+# }}}
+
+# fzf {{{
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--reverse --border \
+    --preview '(highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'"
 # }}}
