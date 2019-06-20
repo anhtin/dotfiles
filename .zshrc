@@ -25,11 +25,6 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 # }}}
 
-# Emerald {{{
-export EMERALDROOT="$HOME/Downloads/emerald"
-export EMERALDARCH="$(arch)"
-# }}}
-
 # Java {{{
 export JAVA_HOME="$(/usr/libexec/java_home -v 10)"
 # }}}
@@ -71,7 +66,6 @@ export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 
 # Aliases {{{
 alias zshreset='source ~/.zshrc'
-alias sct='vim ~/.scratch/scratch -c "cd ~/.scratch"'
 
 # Haskell {{{
 alias ghc='stack ghc'
@@ -83,11 +77,6 @@ alias runghc='stack runghc'
 alias py='python3'
 alias pip='pip3'
 # }}}
-
-# # Neovim {{{
-# alias vim='nvim'
-# alias vi='command vim'
-# # }}}
 
 # }}}
 
@@ -103,7 +92,6 @@ bindkey "^N" down-line-or-search
 
 # zim {{{
 # User configuration sourced by interactive shells
-#
 
 # Change default zim location 
 export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
