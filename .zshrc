@@ -1,3 +1,13 @@
+#
+# User configuration sourced by interactive shells
+#
+
+# Define zim location
+export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+
+# Start zim
+[[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
+
 
 # The following lines were added by compinstall {{{
 zstyle :compinstall filename ${HOME}'/.zshrc'
@@ -23,10 +33,6 @@ export DOTDIR="$HOME/dotfiles"
 # Binary precedence {{{
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-# }}}
-
-# Java {{{
-export JAVA_HOME="$(/usr/libexec/java_home -v 10)"
 # }}}
 
 # LaTeX {{{
