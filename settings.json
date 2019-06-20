@@ -1,0 +1,120 @@
+{
+    "editor.codeLens": true,
+    "editor.fontFamily": "'Droid Sans Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+        80,
+        100
+    ],
+    "vim.useSystemClipboard": true,
+    "javascript.validate.enable": false,
+    "[html]": {
+        "editor.tabSize": 2
+    },
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[css]": {
+        "editor.tabSize": 2
+    },
+    "[typescript]": {
+        "editor.tabSize": 2
+    },
+    "[vue]": {
+        "editor.tabSize": 2
+    },
+    "[haskell]": {
+        "editor.tabSize": 2
+    },
+    "[latex]": {
+        "editor.tabSize": 2
+    },
+    "python.pythonPath": "python3",
+    "python.linting.flake8Path": "/usr/local/bin/flake8",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "explorer.openEditors.visible": 0,
+    "csharp.suppressHiddenDiagnostics": false,
+    "window.zoomLevel": 0,
+    "editor.minimap.enabled": false,
+    "extensions.ignoreRecommendations": false,
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "workbench.startupEditor": "none",
+    "eslint.packageManager": "yarn",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript"
+    ],
+    "editor.lineNumbers": "relative",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "latexmk -shell-escape",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-shell-escape",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "latexmk -shell-escape",
+            "tools": [
+                "latexmk -shell-escape"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex*2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        }
+    ],
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "jest.showCoverageOnLoad": true,
+    "terminal.integrated.rendererType": "dom",
+}
