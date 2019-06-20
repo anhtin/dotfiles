@@ -12,7 +12,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Colorscheme {{{
-
 " Gruvbox {{{
 Plug 'morhetz/gruvbox'              " Gruvbox colorscheme
 
@@ -61,34 +60,34 @@ autocmd VimEnter * call AirlineInit()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " }}}
 
-" neocomplete" {{{
-Plug 'Shougo/neocomplete.vim'
+" " neocomplete" {{{
+" Plug 'Shougo/neocomplete.vim'
 
-" Configuration {{{
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" " Configuration {{{
+" " Disable AutoComplPop.
+" let g:acp_enableAtStartup = 0
+" " Use neocomplete.
+" let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+" let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+" " Define dictionary.
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"     \ 'default' : '',
+"     \ 'vimshell' : $HOME.'/.vimshell_hist',
+"     \ 'scheme' : $HOME.'/.gosh_completions'
+"         \ }
 
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" }}}
+" " Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" " }}}
 
-" }}}
+" " }}}
 
 " NERDTree {{{
 Plug 'scrooloose/nerdtree'
@@ -109,18 +108,6 @@ let g:ale_fixers = {
 " tpope {{{
 Plug 'tpope/vim-commentary'         " Toggle comments
 Plug 'tpope/vim-surround'           " Easy quoting, paranthesizing and tagging
-" }}}
-
-" Ultisnips {{{
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-" Configurations {{{
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" }}}
-
 " }}}
 
 " vim + tmux integration {{{
@@ -155,10 +142,6 @@ let g:elm_format_autosave = 1
 
 " Python {{{
 Plug 'hynek/vim-python-pep8-indent'
-
-" " Jinja2 {{{
-" Plug 'Glench/Vim-Jinja2-Syntax'
-" " }}}
 
 " }}}
 
@@ -232,9 +215,13 @@ augroup AutoCommands
     au FileType * setlocal formatoptions-=o     " Disable auto-comment on o/O
 augroup END
 
-augroup Web
+augroup FileTypes
+    au BufNewFile,BufRead *.m setlocal ft=emerald commentstring=\%\ %s
+augroup END
+
+augroup TabWidth2
     au!
-    au FileType html,json,javascript,vue,vue.html.javascript.css setlocal
+    au FileType rst,emerald,html,json,javascript,css,vue,vue.html.javascript.css setlocal
                 \ shiftwidth=2
                 \ tabstop=2
                 \ softtabstop=2

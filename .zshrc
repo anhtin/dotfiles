@@ -1,11 +1,3 @@
-# Lines configured by zsh-newuser-install {{{
-HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
-setopt appendhistory autocd nomatch notify
-unsetopt beep extendedglob
-bindkey -v
-# End of lines configured by zsh-newuser-install }}}
 
 # The following lines were added by compinstall {{{
 zstyle :compinstall filename ${HOME}'/.zshrc'
@@ -15,9 +7,13 @@ compinit
 # End of lines added by compinstall }}}
 
 # Environment variables {{{
+export LANG="en_US.UTF-8"
+
 # Architecture flags
 export ARCHFLAGS="-arch x86_64"
 export EDITOR="/usr/local/bin/vim"
+
+export PATH="$HOME/.fastlane/bin:$PATH"
 
 # Custom {{{
 export DEV="$HOME/Development"
@@ -29,8 +25,13 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 # }}}
 
+# Emerald {{{
+export EMERALDROOT="$HOME/Downloads/emerald"
+export EMERALDARCH="$(arch)"
+# }}}
+
 # Java {{{
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export JAVA_HOME="$(/usr/libexec/java_home -v 10)"
 # }}}
 
 # LaTeX {{{
@@ -69,7 +70,8 @@ export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 # }}}
 
 # Aliases {{{
-alias zshreset='. ~/.zshrc'
+alias zshreset='source ~/.zshrc'
+alias sct='vim ~/.scratch/scratch -c "cd ~/.scratch"'
 
 # Haskell {{{
 alias ghc='stack ghc'
@@ -114,6 +116,13 @@ fi
 
 # fzf {{{
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS="--reverse --border \
-    --preview '(highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_OPTS="--reverse --border"
+# }}}
+
+# z {{{
+. /usr/local/etc/profile.d/z.sh
+# }}}
+
+# Options {{{
+unsetopt share_history
 # }}}
