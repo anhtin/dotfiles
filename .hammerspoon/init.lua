@@ -1,12 +1,12 @@
 -- Dependencies
-local tiling = require "hs.tiling"
 local hotkey = require "hs.hotkey"
+local spaces = require("hs._asm.undocumented.spaces")
 
--- Modifier key
--- mod = {"cmd", "ctrl"}
+-- Modifier Key
+Mod = {"alt", "shift"}
 mod = {"cmd", "ctrl", "shift"}
 
--- Quick reload config
+-- Quick Reload Config
 hs.alert.show("Hammerspoon config loaded")
 hotkey.bind(mod, "r", function()
     if wifiWatcher then
@@ -21,7 +21,7 @@ end)
 -- Speech Syntheziser
 local speech = hs.speech.new(hs.speech.defaultVoice())
 
--- Network notification
+-- Network Notification
 local function networkChanged()
     ssid = hs.wifi.currentNetwork()
     if ssid == nil then
@@ -73,32 +73,6 @@ end
 local batWatcher = hs.battery.watcher.new(batteryChanged)
 batWatcher:start()
 
--- Specific application focus
-local function openApplication(name)
-    local app = hs.appfinder.appFromName(name)
-    if app then
-        app:activate()
-    end
-end
-
--- Keybindings
-hotkey.bind(mod, "i", function() openApplication("iTerm2") end)
-hotkey.bind(mod, "b", function() openApplication("Google Chrome") end)
-hotkey.bind(mod, "u", function() openApplication("Mail") end)
-hotkey.bind(mod, "o", function() openApplication("Finder") end)
-hotkey.bind(mod, "e", function() openApplication("Code") end)
-hotkey.bind(mod, "p", function() openApplication("Preview") end)
-hotkey.bind(mod, "v", function() openApplication("VirtualBox VM") end)
-hotkey.bind(mod, "h", function() hs.hints.windowHints() end)
-hotkey.bind(mod, "j", function() openApplication("Spotify") end)
-
-hotkey.bind(mod, "l", function() hs.caffeinate.systemSleep() end)
-hotkey.bind(mod, "t", function()
-    hs.alert.show(os.date("%A, %B"), 3)
-    hs.alert.show(os.date("%d/%m/%Y  %X"), 3)
-    hs.alert.show(math.floor(batPercentage) .. " %", 3)
-end)
-
 -- Bluetooth handling
 local isBluetoothOn = true
 os.execute("/usr/local/bin/blueutil " .. (isBluetoothOn and "on" or "off"))
@@ -114,4 +88,41 @@ function toggleBluetooth(on)
         hs.alert.show("Bluetooth enabled")
     end
 end
-hotkey.bind(mod, "q", function() toggleBluetooth() end)
+
+-- Specific Application Focus
+local function openApplication(name)
+    local app = hs.appfinder.appFromName(name)
+    if app then
+        app:activate()
+    end
+end
+
+-- Move Window Between Spaces
+-- Adapted from: https://stackoverflow.com/questions/46818712/using-hammerspoon-and-the-spaces-module-to-move-window-to-new-space
+function MoveWindowToSpace(space)
+    local window = hs.window.focusedWindow()
+    local screenId = window:screen():spacesUUID()
+    local spaceId = spaces.layout()[screenId][space]
+    spaces.moveWindowToSpace(window:id(), spaceId)
+end
+
+-- Keybindings
+hotkey.bind(mod, "b", function() toggleBluetooth() end)
+hotkey.bind(mod, "h", function() hs.hints.windowHints() end)
+hotkey.bind(mod, "l", function() hs.caffeinate.systemSleep() end)
+hotkey.bind(mod, "t", function()
+    hs.alert.show(os.date("%A, %B"), 3)
+    hs.alert.show(os.date("%d/%m/%Y  %X"), 3)
+    hs.alert.show(math.floor(batPercentage) .. " %", 3)
+end)
+hs.hotkey.bind(Mod, '0', function() MoveWindowToSpace(1) end)
+hs.hotkey.bind(Mod, '1', function() MoveWindowToSpace(2) end)
+hs.hotkey.bind(Mod, '2', function() MoveWindowToSpace(3) end)
+hs.hotkey.bind(Mod, '3', function() MoveWindowToSpace(4) end)
+hs.hotkey.bind(Mod, '4', function() MoveWindowToSpace(5) end)
+hs.hotkey.bind(Mod, '5', function() MoveWindowToSpace(6) end)
+hs.hotkey.bind(Mod, '6', function() MoveWindowToSpace(7) end)
+hs.hotkey.bind(Mod, '7', function() MoveWindowToSpace(8) end)
+hs.hotkey.bind(Mod, '8', function() MoveWindowToSpace(9) end)
+hs.hotkey.bind(Mod, '9', function() MoveWindowToSpace(10) end)
+

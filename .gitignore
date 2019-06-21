@@ -1,2 +1,4 @@
 *.swp
 ssh_keys.sh
+.hammerspoon/hs/
+!.hammerspoon/hs/plugins.txt

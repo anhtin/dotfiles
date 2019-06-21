@@ -17,6 +17,6 @@ for file in ${FILES[@]}; do
     ln -i -s $HOME/dotfiles/$file $HOME/$file
 done
 for folder in ${FOLDERS[@]}; do
-    echo "Linking folder '$file'..."
-    ln -i -s $HOME/dotfiles/$file $HOME/$folder
+    echo "Linking folder '$folder'..."
+    ln -i -s $HOME/dotfiles/$folder $HOME/$folder
 done
