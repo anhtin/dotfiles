@@ -73,22 +73,6 @@ end
 local batWatcher = hs.battery.watcher.new(batteryChanged)
 batWatcher:start()
 
--- Bluetooth handling
-local isBluetoothOn = true
-os.execute("/usr/local/bin/blueutil " .. (isBluetoothOn and "on" or "off"))
-hs.alert.show("Bluetooth is " .. (isBluetoothOn and "enabled" or "disabled"))
-function toggleBluetooth(on)
-    if on == false or on == nil and isBluetoothOn then
-        os.execute("/usr/local/bin/blueutil off")
-        isBluetoothOn = false
-        hs.alert.show("Bluetooth disabled")
-    else
-        os.execute("/usr/local/bin/blueutil on")
-        isBluetoothOn = true
-        hs.alert.show("Bluetooth enabled")
-    end
-end
-
 -- Specific Application Focus
 local function openApplication(name)
     local app = hs.appfinder.appFromName(name)
@@ -99,7 +83,7 @@ end
 
 -- Move Window Between Spaces
 -- Adapted from: https://stackoverflow.com/questions/46818712/using-hammerspoon-and-the-spaces-module-to-move-window-to-new-space
-function MoveWindowToSpace(space)
+function moveWindowToSpace(space)
     local window = hs.window.focusedWindow()
     local screenId = window:screen():spacesUUID()
     local spaceId = spaces.layout()[screenId][space]
@@ -107,7 +91,7 @@ function MoveWindowToSpace(space)
 end
 
 -- Keybindings
-hotkey.bind(mod, "b", function() toggleBluetooth() end)
+hotkey.bind(mod, "return", function() openApplication("iTerm2") end)
 hotkey.bind(mod, "h", function() hs.hints.windowHints() end)
 hotkey.bind(mod, "l", function() hs.caffeinate.systemSleep() end)
 hotkey.bind(mod, "t", function()
@@ -115,14 +99,13 @@ hotkey.bind(mod, "t", function()
     hs.alert.show(os.date("%d/%m/%Y  %X"), 3)
     hs.alert.show(math.floor(batPercentage) .. " %", 3)
 end)
-hs.hotkey.bind(Mod, '0', function() MoveWindowToSpace(1) end)
-hs.hotkey.bind(Mod, '1', function() MoveWindowToSpace(2) end)
-hs.hotkey.bind(Mod, '2', function() MoveWindowToSpace(3) end)
-hs.hotkey.bind(Mod, '3', function() MoveWindowToSpace(4) end)
-hs.hotkey.bind(Mod, '4', function() MoveWindowToSpace(5) end)
-hs.hotkey.bind(Mod, '5', function() MoveWindowToSpace(6) end)
-hs.hotkey.bind(Mod, '6', function() MoveWindowToSpace(7) end)
-hs.hotkey.bind(Mod, '7', function() MoveWindowToSpace(8) end)
-hs.hotkey.bind(Mod, '8', function() MoveWindowToSpace(9) end)
-hs.hotkey.bind(Mod, '9', function() MoveWindowToSpace(10) end)
-
+hotkey.bind(Mod, "0", function() moveWindowToSpace(1) end)
+hotkey.bind(Mod, "1", function() moveWindowToSpace(2) end)
+hotkey.bind(Mod, "2", function() moveWindowToSpace(3) end)
+hotkey.bind(Mod, "3", function() moveWindowToSpace(4) end)
+hotkey.bind(Mod, "4", function() moveWindowToSpace(5) end)
+hotkey.bind(Mod, "5", function() moveWindowToSpace(6) end)
+hotkey.bind(Mod, "6", function() moveWindowToSpace(7) end)
+hotkey.bind(Mod, "7", function() moveWindowToSpace(8) end)
+hotkey.bind(Mod, "8", function() moveWindowToSpace(9) end)
+hotkey.bind(Mod, "9", function() moveWindowToSpace(10) end)
