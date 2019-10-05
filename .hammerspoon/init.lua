@@ -91,7 +91,6 @@ function moveWindowToSpace(space)
 end
 
 -- Keybindings
-hotkey.bind(mod, "return", function() openApplication("iTerm2") end)
 hotkey.bind(mod, "h", function() hs.hints.windowHints() end)
 hotkey.bind(mod, "l", function() hs.caffeinate.systemSleep() end)
 hotkey.bind(mod, "t", function()
