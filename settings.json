@@ -2,34 +2,53 @@
     "editor.codeLens": true,
     "editor.fontFamily": "'Droid Sans Mono', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 14,
-    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
     "editor.rulers": [
         80,
-        100
+        120
     ],
     "vim.useSystemClipboard": true,
     "javascript.validate.enable": false,
     "[html]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false
     },
     "[javascript]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false
+    },
+    "[javascriptreact]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false
     },
     "[css]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false
+    },
+    "[scss]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false
     },
     "[typescript]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false
     },
     "[vue]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false
     },
     "[haskell]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false
     },
     "[latex]": {
         "editor.tabSize": 2
     },
+    "[elm]": {},
     "python.pythonPath": "python3",
     "python.linting.flake8Path": "/usr/local/bin/flake8",
     "python.linting.flake8Enabled": true,
@@ -41,11 +60,32 @@
     "extensions.ignoreRecommendations": false,
     "java.errors.incompleteClasspath.severity": "ignore",
     "workbench.startupEditor": "none",
+    "workbench.settings.editor": "json",
     "eslint.packageManager": "yarn",
     "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript"
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "javascriptreact",
+            "autoFix": true
+        },
+        {
+            "language": "typescript",
+            "autoFix": true
+        },
+        {
+            "language": "typescriptreact",
+            "autoFix": true
+        }
+    ],
+    "eslint.autoFixOnSave": true,
+    "eslint.workingDirectories": [
+        {
+            "directory": ".",
+            "changeProcessCWD": true
+        }
     ],
     "editor.lineNumbers": "relative",
     "latex-workshop.view.pdf.viewer": "tab",
@@ -117,4 +157,6 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "jest.showCoverageOnLoad": true,
     "terminal.integrated.rendererType": "dom",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 }
